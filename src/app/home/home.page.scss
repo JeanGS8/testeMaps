@@ -1,0 +1,17 @@
+.content{
+  position: relative;
+
+  ion-text{
+    margin-left: 10px;
+  }
+  
+  &__front{
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  &__back{
+    z-index: 1;
+  } 
+}

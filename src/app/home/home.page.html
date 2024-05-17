@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Google places
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar
+    search-icon="search-circle"
+    animated="true"
+    show-clear-button="focus"
+    clear-icon="trash-bin"
+    debounce="800"
+    placeholder="search for area, street..."
+    (ionInput)="onSearchChange($event)"
+  ></ion-searchbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="content">
+  <ion-list *ngIf="places.length > 0 && query" class="content__front">
+    <ion-item *ngFor="let place of places" (click)="setFav(place)">
+      <ion-icon [name]="verificaFav(place?.address) ? 'remove' : 'add'" slot="start"></ion-icon>
+        {{ place?.title }}
+        <p>
+          <ion-text color="primary">
+            {{ place?.address }}
+          </ion-text>
+        </p>
+    </ion-item>
+  </ion-list>
+  
+  <ion-list *ngIf="favoritos.length > 0" class="content__back">
+    <ion-item *ngFor="let fav of favoritos" color="dark" (click)="setFav(fav)">
+      <ion-icon name="location-outline" slot="location-outline" slot="start"></ion-icon>
+        {{ fav?.title }}
+        <p>
+          <ion-text color="primary">
+            {{ fav?.address }}
+          </ion-text>
+        </p>
+    </ion-item>
+  </ion-list>
+</ion-content>
