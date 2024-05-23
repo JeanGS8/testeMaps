@@ -17,8 +17,8 @@
 
 <ion-content [fullscreen]="true" class="content">
   <ion-list *ngIf="places.length > 0 && query" class="content__front">
-    <ion-item *ngFor="let place of places" (click)="setFav(place)">
-      <ion-icon [name]="verificaFav(place?.address) ? 'remove' : 'add'" slot="start"></ion-icon>
+    <ion-item *ngFor="let place of places">
+      <ion-icon [name]="verificaFav(place?.address) ? 'remove' : 'add'" (click)="setFav(place)" class="icon" slot="start"></ion-icon>
         {{ place?.title }}
         <p>
           <ion-text color="primary">
@@ -29,7 +29,7 @@
   </ion-list>
   
   <ion-list *ngIf="favoritos.length > 0" class="content__back">
-    <ion-item *ngFor="let fav of favoritos" color="dark" (click)="setFav(fav)">
+    <ion-item *ngFor="let fav of favoritos" color="dark">
       <ion-icon name="location-outline" slot="location-outline" slot="start"></ion-icon>
         {{ fav?.title }}
         <p>
@@ -37,6 +37,7 @@
             {{ fav?.address }}
           </ion-text>
         </p>
+        <ion-button expand="block" slot="end" (click)="setFav(fav)" color="danger">Deletar</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
